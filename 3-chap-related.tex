@@ -1,0 +1,34 @@
+\chapter{State of the Art}\label{chap:stat}
+
+
+In this chapter I will present and discuss related work in the literature.
+
+In the work Benson et al.~\cite{Benson2016} set out the objective to analyze and discover rich connectivity patterns in complex networks. They developed a framework that given a network and a motif finds a subset of nodes S by optimizing a metric called motif conductance [Should I cite this term?]. This defined metric generalizes the conductance metric in spectral graph theory, it accounts for the presence of motif instances inside the subset and avoids cutting motif occurrences. The optimization framework provably finds near-optimal clusters by extending the spectral graph clustering methodology. They apply eigenvalues and eigenvectors to a computed motif adjacency matrix which produces various nested sets Sr =\{[OMEGA SYMBOL]1, …, sr\} of increasing size in r. They  prove that the set Sr with the smallest motif-based conductance is a near-optimal higher-order cluster. This results in a computational efficient and easy to implement program with mathematical guarantees on the near-optimality of obtained clusters (at most a quadratic factor away from optimal).
+
+Various applications are shown on real networks like the C. elegans neural network [SHOULD I CITE THIS?] and air traffic in Canada and the United States.
+
+A restriction for this metric and framework is that it only creates a subset of the network S and its complement, so in practice we get two sets of nodes who also try to have the same number of motif instances in them. This means that we can not find more than two clusters for some motif. The authors are able to show results of more than two clusters by using analyzing various runs with different motifs and then joining the information obtained. 
+
+
+Arenas et. al~\cite{Arenas2008} question the limitations that standard Newman-Girvan [SHOULD CITE?] modularity impose. The popular metric provides a values for some partition of the network that depends on how much the nodes of a community are linked to each other and how many connections exist to the outside communities. With this metric we are left with a problem of optimization which various works have tried to solve [SHOULD CITE REFERENCES?]. In modularity are only looking to the simplest connectivity pattern that we could - are these two nodes connected or not - and while this can be enough in some cases, higher order complex networks often have hidden structures that can be revealed with more complex connectivity patterns. So a new definition called motif modularity is proposed, an extension of the standard modularity, that can be applied to undirected, directed, weighted and unweighted networks. Some specializations of the definition are also shown described, such as cycle modularity with the triangle motif (three nodes connected to each other) and path modularity, defined by a linear motif of length l Ep(l) = \{(1, 2), (2, 3),... , (l, l + 1)\} 
+
+Cycle modularity of size three is used to find highly connected clusters in much the same way standard modularity works. It is used in a synthetic network and the Zachary Karate Club Network [SHOULD CITE] to reveal areas of high connectivity, resulting in desired partitions.
+
+With path modularity for a path of size three and the adding restriction that the first and third node belong to the same class, they are able to find a bipartite structure in networks that have it. They also extended it to find multipartite structure like the Southern Women Event Participation network [SHOULD CITE].
+
+We still have a problem left to solve which is how to find the partition that maximizes this new definition - motif modularity - since it is infeasible to compute all different partitions for some network.
+
+
+Milo et. al \cite{Milo2002} study the role of connectivity patterns in uncovering hidden structures in complex networks. They define "network motifs" as sequences or patterns of nodes and edges that connect them. Complex networks often contain an abnormal quantity of some of these motifs when compared to randomized networks, so we could deduce reasons why those patterns appear.
+
+They found networks with these properties from areas like biochemistry, neurobiology, ecology, and engineering. Different networks with the same hidden structure - for example various electronic chips with digital fractional multipliers have the same type of motifs over represented. Even networks from different areas but similar functions, like the C. elegans neural network and electronic circuits with with forward logic chips have the same over represented motifs in common. 
+
+This network motif definition and the fact that complex networks can express their inner structure by analyzing this motifs opens the door to new methodologies to describe networks.
+
+Fortunato and Barthélemy~\cite{Fortunato2007} noted the influence of modularity [SHOULD CITE?] as a way to qualify community discovery and in clustering methods through optimization. They mathematically prove that this optimization may hide the real partition because having two communities of some size small enough is going to yield a worse modularity value than if those two communities where joined in a single one.
+
+This brings some problems to the table for methods that rely on the optimization of modularity and where the real communities for a network have heterogeneous size. So it becomes necessary to perform tests in order to check for the existence possible biases and resolution limits in the results.
+
+Arenas et. al ~\cite{Arenas2008ResolutionLimit} try to answer to the problem of resolution limit in the modularity optimization task. They come up with a variable that represents how much we want to prefer smaller communities. When it is zero, it represents the normal network and when we increase the variable we have access to more refined substructures. What is they want to find is the minimum value for that variable that maximizes the modularity. To do that, they use two heuristics for compute motif modularity: extremal optimization and tabu search. They show the results of applications to synthetic networks and how ranges values of the variable can create plateaus of stability, provable points of interest. They mention that all ranges where the modules stay stable are of importance, not only the most stable range.
+
+So to solve a resolution limit that may exist one might apply the methods described [SHOULD CITE?] and analyze the points of interest. 
